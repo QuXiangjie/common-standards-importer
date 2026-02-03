@@ -28,13 +28,14 @@ task :fetch, [:limit] => :clean do |t, args|
   if args[:limit]
     limit = args[:limit].to_i
   end
-  CommonStandardsDownload.run("vZKoJwFB1PTJnozKBSANADc3", limit)
+  api_key = ENV['CSP_API_KEY'] || raise("Please set CSP_API_KEY environment variable")
+  CommonStandardsDownload.run(api_key, limit)
   puts 'fetch complete'
 end
 
 task :clean do
   ['jurisdictions.json', 'standard_sets.json', 'standards.json'].each do |fname|
-    if File.exists?(fname)
+    if File.exist?(fname)
       File.delete(fname)
     end
   end

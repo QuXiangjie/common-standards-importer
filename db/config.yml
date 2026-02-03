@@ -12,7 +12,7 @@ defaults: &defaults
 development:
   <<: *defaults
   host: localhost
-  database: standards
+  database: standards_dev
 
 # test:
 #   <<: *defaults

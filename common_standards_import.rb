@@ -21,7 +21,7 @@ class CommonStandardsImport
 
   def self.initial_setup
     ActiveRecord::Base.logger = Logger.new('debug.log')
-    configuration = YAML::load(IO.read('db/config.yml'))
+    configuration = YAML::load(IO.read('db/config.yml'), aliases: true)
     ActiveRecord::Base.establish_connection(configuration[ENV["ENV"]])
   end
 
